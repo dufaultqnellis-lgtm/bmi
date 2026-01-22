@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlusFit | Healthy Lifestyle Platform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f7f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    nav {
+      background-color: #27ae60;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 50px 5%;
+      background-color: white;
+      margin: 30px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      max-width: 1200px;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      color: #27ae60;
+      font-size: 36px;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #2ecc71;
+      padding-bottom: 15px;
+    }
+
+    h3 {
+      color: #27ae60;
+      font-size: 22px;
+      margin-top: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ecf0f1 0%, #f5f7fa 100%);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-top: 5px solid #2ecc71;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
+    }
+
+    .card h3 {
+      color: #2ecc71;
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .card p {
+      color: #666;
+    }
+
+    footer {
+      background-color: #2ecc71;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin: 10px 5px;
+    }
+
+    button:hover {
+      background-color: #2ecc71;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    }
+
+    /* BMI Calculator Styles */
+    .bmi-calculator {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="number"],
+    select {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #2ecc71;
+      box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+    }
+
+    .bmi-result {
+      display: none;
+      background-color: #e8f5e9;
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      border-left: 5px solid #2ecc71;
+      animation: slideIn 0.3s ease;
+    }
+
+    .bmi-result.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .bmi-value {
+      font-size: 48px;
+      font-weight: bold;
+      color: #2ecc71;
+      margin: 15px 0;
+    }
+
+    .bmi-category {
+      font-size: 20px;
+      font-weight: bold;
+      color: #27ae60;
+      padding: 10px 20px;
+      background-color: white;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 10px 0;
+    }
+
+    .subscription-form {
+      background-color: #f0f7f0;
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .subscription-form input {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .subscription-form input:focus {
+      outline: none;
+      border-color: #2ecc71;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+
+      section {
+        padding: 30px 5%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .input-wrapper {
+        flex-direction: column;
+      }
+
+      input[type="number"],
+      select {
+        min-width: 100%;
+      }
+
+      #userMenu {
+        right: 10px !important;
+        left: auto;
+      }
+
+      #authModal > div {
+        width: 95% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>💚 PlusFit</h1>
+  <p>Your Guide to a Healthier Lifestyle</p>
+</header>
+
+<nav>
+  <a href="#home">🏠 Home</a>
+  <a href="#workout">💪 Workout</a>
+  <a href="#nutrition">🍎 Nutrition</a>
+  <a href="#bmi">📊 BMI Calculator</a>
+  <a href="#contact">📧 Contact</a>
+  <a href="#account" onclick="toggleUserMenu()" style="margin-left: auto;">👤 Account</a>
+</nav>
+
+<!-- User Menu -->
+<div id="userMenu" style="display: none; position: fixed; top: 70px; right: 20px; background: white; border: 2px solid #2ecc71; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 1000; min-width: 250px; padding: 20px;">
+  <div id="userDisplay"></div>
+</div>
+
+<!-- Auth Modal -->
+<div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; flex-direction: column; justify-content: center; align-items: center;">
+  <div style="background: white; padding: 40px; border-radius: 10px; max-width: 400px; width: 90%;">
+    <h2 id="authTitle" style="color: #2ecc71; margin-bottom: 20px;">Create Account</h2>
+    <input type="text" id="authUsername" placeholder="Username" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+    <input type="email" id="authEmail" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+    <input type="password" id="authPassword" placeholder="Password" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+    <div style="display: flex; gap: 10px;">
+      <button id="authSubmitBtn" onclick="handleAuth()" style="flex: 1; background-color: #2ecc71;">Create</button>
+      <button onclick="closeAuthModal()" style="flex: 1; background-color: #95a5a6;">Cancel</button>
+    </div>
+    <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+      <span id="authToggleText">Already have an account? </span><a href="#" onclick="toggleAuthMode()" style="color: #2ecc71; text-decoration: none; cursor: pointer;">Sign In</a>
+    </p>
+  </div>
+</div>
+
+<!-- Workout Detail Modal -->
+<div id="workoutModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; overflow-y: auto; padding-top: 20px;">
+  <div style="background: white; margin: 20px auto; padding: 40px; border-radius: 10px; max-width: 700px; width: 90%;">
+    <button onclick="closeWorkoutModal()" style="float: right; background-color: #95a5a6; padding: 8px 15px;">✕ Close</button>
+    <h2 id="workoutTitle" style="color: #2ecc71; margin-bottom: 20px; clear: both;"></h2>
+    <div id="workoutContent"></div>
+  </div>
+</div>
+
+<!-- Nutrition Detail Modal -->
+<div id="nutritionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; overflow-y: auto; padding-top: 20px;">
+  <div style="background: white; margin: 20px auto; padding: 40px; border-radius: 10px; max-width: 700px; width: 90%;">
+    <button onclick="closeNutritionModal()" style="float: right; background-color: #95a5a6; padding: 8px 15px;">✕ Close</button>
+    <h2 style="color: #2ecc71; margin-bottom: 20px; clear: both;">🍎 Personalized Nutrition Plans</h2>
+    <div id="nutritionContent"></div>
+  </div>
+</div>
+
+<section id="home">
+  <h2>Welcome to PlusFit</h2>
+  <p>PlusFit is a comprehensive web-based health platform designed to help individuals manage their weight and improve overall well-being through guided exercise programs and personalized nutrition education.</p>
+  <p>Whether you're just starting your fitness journey or looking to optimize your lifestyle, PlusFit provides the tools and knowledge you need to succeed.</p>
+</section>
+
+<section id="workout">
+  <h2>💪 Workout Programs</h2>
+  <p>Choose from our carefully designed workout programs tailored to your fitness level. Each program includes detailed instructions and tips for proper form and safety.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>🔰 Beginner</h3>
+      <p>Low-impact exercises suitable for beginners or those returning to fitness. Start your journey with gentle, effective movements.</p>
+      <button onclick="openWorkoutDetail('beginner')">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>⚡ Intermediate</h3>
+      <p>Moderate workouts to improve stamina and strength. Perfect for those with some fitness experience.</p>
+      <button onclick="openWorkoutDetail('intermediate')">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>🔥 Advanced</h3>
+      <p>High-intensity training for experienced users. Push your limits and achieve peak performance.</p>
+      <button onclick="openWorkoutDetail('advanced')">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<section id="nutrition">
+  <h2>🍎 Nutrition Guidance</h2>
+  <p>Proper nutrition is the foundation of health. Learn about balanced diets, calorie control, and making healthy food choices that support your weight management goals.</p>
+  <h3>Key Nutrition Tips:</h3>
+  <ul>
+    <li><strong>Balanced Diet:</strong> Include proteins, carbohydrates, and healthy fats in every meal</li>
+    <li><strong>Portion Control:</strong> Use smaller plates and measure portions to maintain calorie goals</li>
+    <li><strong>Hydration:</strong> Drink plenty of water throughout the day</li>
+    <li><strong>Meal Planning:</strong> Plan your meals ahead to avoid impulsive unhealthy choices</li>
+    <li><strong>Healthy Snacking:</strong> Choose nutrient-dense snacks like fruits, nuts, and yogurt</li>
+  </ul>
+  <button onclick="openNutritionDetail()">View Nutrition Plans</button>
+</section>
+
+<section id="bmi">
+  <h2>📊 BMI Calculator</h2>
+  <p>Calculate your Body Mass Index (BMI) to understand your current health status. BMI is a simple index based on height and weight that applies to adult men and women.</p>
+  
+  <div class="bmi-calculator">
+    <div class="input-group">
+      <label for="height">Height:</label>
+      <div class="input-wrapper">
+        <input type="number" id="height" placeholder="Enter height" step="0.1" min="0">
+        <select id="heightUnit">
+          <option value="cm">Centimeters (cm)</option>
+          <option value="m">Meters (m)</option>
+          <option value="in">Inches (in)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="weight">Weight:</label>
+      <div class="input-wrapper">
+        <input type="number" id="weight" placeholder="Enter weight" step="0.1" min="0">
+        <select id="weightUnit">
+          <option value="kg">Kilograms (kg)</option>
+          <option value="lb">Pounds (lb)</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <button onclick="calculateBMI()">Calculate BMI</button>
+      <button onclick="resetBMI()" style="background-color: #95a5a6;">Reset</button>
+    </div>
+
+    <div id="bmiResult" class="bmi-result">
+      <p>Your BMI: <span class="bmi-value" id="bmiValue">0.0</span></p>
+      <p class="bmi-category" id="bmiCategory">Category</p>
+      <p id="bmiAdvice" style="margin-top: 15px; font-weight: bold; color: #27ae60;"></p>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px; background-color: #f0f7f0; padding: 20px; border-radius: 8px;">
+    <h3>BMI Classification Standards:</h3>
+    <table style="width: 100%; margin-top: 15px; text-align: left;">
+      <tr style="background-color: #e8f5e9;">
+        <td style="padding: 10px; font-weight: bold;">Underweight</td>
+        <td style="padding: 10px;">BMI less than 18.5</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; font-weight: bold;">Normal Weight</td>
+        <td style="padding: 10px;">BMI 18.5 - 24.9</td>
+      </tr>
+      <tr style="background-color: #e8f5e9;">
+        <td style="padding: 10px; font-weight: bold;">Overweight</td>
+        <td style="padding: 10px;">BMI 25.0 - 29.9</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; font-weight: bold;">Obese</td>
+        <td style="padding: 10px;">BMI 30.0 and above</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>📧 Stay Connected</h2>
+  <p>Subscribe to PlusFit to receive personalized health tips, workout recommendations, and nutrition updates delivered to your inbox. Join our community of healthy lifestyle enthusiasts!</p>
+  
+  <div class="subscription-form">
+    <h3>Subscribe for Health Tips</h3>
+    <input type="email" id="emailInput" placeholder="Enter your email address" required>
+    <button onclick="subscribe()">Subscribe Now</button>
+    <p id="subscribeMessage" style="margin-top: 15px; display: none;"></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 PlusFit | Supporting SDG 3: Good Health & Well-Being</p>
+  <p style="font-size: 14px; margin-top: 10px; opacity: 0.9;">Empowering individuals to live healthier, happier lives</p>
+</footer>
+
+<script>
+  // User Authentication System
+  let currentUser = null;
+  let authMode = 'signup'; // 'signup' or 'login'
+
+  // Initialize user on page load
+  window.addEventListener('load', () => {
+    const savedUser = localStorage.getItem('plusfit_user');
+    if (savedUser) {
+      currentUser = JSON.parse(savedUser);
+      updateUserDisplay();
+    } else {
+      showAuthModal();
+    }
+  });
+
+  function toggleAuthMode() {
+    authMode = authMode === 'signup' ? 'login' : 'signup';
+    const titleEl = document.getElementById('authTitle');
+    const toggleTextEl = document.getElementById('authToggleText');
+    const submitBtn = document.getElementById('authSubmitBtn');
+
+    if (authMode === 'login') {
+      titleEl.textContent = 'Sign In';
+      toggleTextEl.textContent = "Don't have an account? ";
+      submitBtn.textContent = 'Sign In';
+      document.getElementById('authUsername').style.display = 'none';
+      document.getElementById('authEmail').style.display = 'none';
+    } else {
+      titleEl.textContent = 'Create Account';
+      toggleTextEl.textContent = 'Already have an account? ';
+      submitBtn.textContent = 'Create';
+      document.getElementById('authUsername').style.display = 'block';
+      document.getElementById('authEmail').style.display = 'block';
+    }
+  }
+
+  function showAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+  }
+
+  function closeAuthModal() {
+    if (!currentUser) {
+      alert('Please create an account or sign in to continue');
+      return;
+    }
+    document.getElementById('authModal').style.display = 'none';
+  }
+
+  function handleAuth() {
+    const username = document.getElementById('authUsername').value.trim();
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+
+    if (authMode === 'signup') {
+      if (!username || !email || !password) {
+        alert('Please fill in all fields');
+        return;
+      }
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('Please enter a valid email');
+        return;
+      }
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
+      }
+
+      // Create user
+      currentUser = {
+        username,
+        email,
+        password: btoa(password), // Simple encoding (not for production)
+        createdAt: new Date().toISOString(),
+        bmiHistory: [],
+        subscribed: false
+      };
+    } else {
+      // Login mode
+      if (!email || !password) {
+        alert('Please enter email and password');
+        return;
+      }
+
+      const savedUser = localStorage.getItem('plusfit_user');
+      if (!savedUser) {
+        alert('Account not found. Please create an account first');
+        return;
+      }
+
+      const user = JSON.parse(savedUser);
+      if (user.email !== email || user.password !== btoa(password)) {
+        alert('Invalid email or password');
+        return;
+      }
+
+      currentUser = user;
+    }
+
+    // Save user
+    localStorage.setItem('plusfit_user', JSON.stringify(currentUser));
+    updateUserDisplay();
+    document.getElementById('authModal').style.display = 'none';
+    authMode = 'signup'; // Reset to signup mode
+  }
+
+  function updateUserDisplay() {
+    const userMenu = document.getElementById('userDisplay');
+    if (currentUser) {
+      userMenu.innerHTML = `
+        <div style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+          <p style="font-weight: bold; color: #2ecc71; margin-bottom: 5px;">${currentUser.username}</p>
+          <p style="font-size: 12px; color: #666; margin: 0;">${currentUser.email}</p>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <p style="font-size: 12px; color: #999;">BMI Records: ${currentUser.bmiHistory ? currentUser.bmiHistory.length : 0}</p>
+        </div>
+        <div>
+          <button onclick="toggleSubscription()" style="width: 100%; margin-bottom: 8px; background-color: ${currentUser.subscribed ? '#27ae60' : '#95a5a6'};">
+            ${currentUser.subscribed ? '✓ Subscribed' : 'Subscribe'}
+          </button>
+          <button onclick="logout()" style="width: 100%; background-color: #e74c3c;">Logout</button>
+        </div>
+      `;
+    }
+  }
+
+  function toggleUserMenu() {
+    const userMenu = document.getElementById('userMenu');
+    userMenu.style.display = userMenu.style.display === 'none' ? 'block' : 'none';
+    event.stopPropagation();
+  }
+
+  function toggleSubscription() {
+    currentUser.subscribed = !currentUser.subscribed;
+    localStorage.setItem('plusfit_user', JSON.stringify(currentUser));
+    updateUserDisplay();
+    alert(currentUser.subscribed ? '✓ Thank you for subscribing!' : '✓ Unsubscribed');
+  }
+
+  function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+      currentUser = null;
+      document.getElementById('userMenu').style.display = 'none';
+      showAuthModal();
+      authMode = 'signup';
+      document.getElementById('authUsername').style.display = 'block';
+      document.getElementById('authEmail').style.display = 'block';
+      document.getElementById('authTitle').textContent = 'Create Account';
+      document.getElementById('authToggleText').textContent = 'Already have an account? ';
+    }
+  }
+
+  // Close user menu when clicking elsewhere
+  document.addEventListener('click', (e) => {
+    const userMenu = document.getElementById('userMenu');
+    const accountLink = document.querySelector('a[href="#account"]');
+    if (userMenu && accountLink && !userMenu.contains(e.target) && !accountLink.contains(e.target)) {
+      userMenu.style.display = 'none';
+    }
+  });
+
+  // Enhanced BMI Calculator with history saving
+  function calculateBMI() {
+    const height = parseFloat(document.getElementById('height').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const heightUnit = document.getElementById('heightUnit').value;
+    const weightUnit = document.getElementById('weightUnit').value;
+
+    if (!height || !weight || height <= 0 || weight <= 0) {
+      alert('Please enter valid height and weight values');
+      return;
+    }
+
+    // Convert to standard units (meters and kg)
+    let heightInMeters = height;
+    if (heightUnit === 'cm') {
+      heightInMeters = height / 100;
+    } else if (heightUnit === 'in') {
+      heightInMeters = height * 0.0254;
+    }
+
+    let weightInKg = weight;
+    if (weightUnit === 'lb') {
+      weightInKg = weight * 0.453592;
+    }
+
+    // Calculate BMI
+    const bmi = weightInKg / (heightInMeters * heightInMeters);
+
+    // Determine category and advice
+    let category = '';
+    let advice = '';
+
+    if (bmi < 18.5) {
+      category = 'Underweight';
+      advice = 'You may need to gain weight. Consult with a healthcare provider or nutritionist for personalized advice.';
+    } else if (bmi < 25) {
+      category = 'Normal Weight';
+      advice = 'Congratulations! You are at a healthy weight. Continue maintaining your current lifestyle.';
+    } else if (bmi < 30) {
+      category = 'Overweight';
+      advice = 'Consider increasing physical activity and adjusting your diet. Our workout and nutrition programs can help!';
+    } else {
+      category = 'Obese';
+      advice = 'It is recommended to consult with a healthcare provider. Our programs and professional guidance can support your journey.';
+    }
+
+    // Save to history
+    if (currentUser) {
+      if (!currentUser.bmiHistory) {
+        currentUser.bmiHistory = [];
+      }
+      currentUser.bmiHistory.push({
+        bmi: parseFloat(bmi.toFixed(1)),
+        category,
+        height,
+        heightUnit,
+        weight,
+        weightUnit,
+        date: new Date().toLocaleString()
+      });
+      localStorage.setItem('plusfit_user', JSON.stringify(currentUser));
+      updateUserDisplay();
+    }
+
+    // Display results
+    document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+    document.getElementById('bmiCategory').textContent = 'Category: ' + category;
+    document.getElementById('bmiAdvice').textContent = advice;
+    document.getElementById('bmiResult').classList.add('active');
+  }
+
+  function resetBMI() {
+    document.getElementById('height').value = '';
+    document.getElementById('weight').value = '';
+    document.getElementById('heightUnit').value = 'cm';
+    document.getElementById('weightUnit').value = 'kg';
+    document.getElementById('bmiResult').classList.remove('active');
+  }
+
+  function subscribe() {
+    const email = document.getElementById('emailInput').value;
+    const message = document.getElementById('subscribeMessage');
+
+    if (!email) {
+      alert('Please enter your email address');
+      return;
+    }
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
+    if (currentUser) {
+      currentUser.subscribed = true;
+      localStorage.setItem('plusfit_user', JSON.stringify(currentUser));
+      updateUserDisplay();
+    }
+
+    message.textContent = '✓ Thank you for subscribing! Check your email for our latest health tips.';
+    message.style.display = 'block';
+    message.style.color = '#2ecc71';
+    document.getElementById('emailInput').value = '';
+
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 5000);
+  }
+
+  // Allow Enter key for BMI calculation
+  document.getElementById('height').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') calculateBMI();
+  });
+
+  document.getElementById('weight').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') calculateBMI();
+  });
+
+  // Allow Enter key for email subscription
+  document.getElementById('emailInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') subscribe();
+  });
+
+  // Allow Enter key in auth modal
+  document.getElementById('authPassword').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') handleAuth();
+  });
+
+  // Workout Details Data
+  const workoutDetails = {
+    beginner: {
+      title: '🔰 Beginner Workout Program',
+      content: `
+        <h3>Welcome to Your Fitness Journey!</h3>
+        <p>This program is perfect for those just starting out. Begin with 3 days per week, allowing rest days between sessions.</p>
+        
+        <h4>Week 1-2: Foundation Building</h4>
+        <ul>
+          <li><strong>Walking:</strong> 20-30 minutes, 3x per week - Start with a comfortable pace</li>
+          <li><strong>Bodyweight Exercises:</strong>
+            <ul>
+              <li>Wall Push-ups: 3 sets of 10 reps</li>
+              <li>Squats: 3 sets of 12 reps</li>
+              <li>Plank Hold: 3 sets of 15-20 seconds</li>
+            </ul>
+          </li>
+          <li><strong>Stretching:</strong> 10 minutes after each session</li>
+        </ul>
+        
+        <h4>Week 3-4: Building Momentum</h4>
+        <ul>
+          <li><strong>Brisk Walking or Light Jogging:</strong> 25-35 minutes</li>
+          <li><strong>Resistance Training:</strong>
+            <ul>
+              <li>Push-ups (on knees if needed): 3 sets of 10-12 reps</li>
+              <li>Bodyweight Squats: 3 sets of 15 reps</li>
+              <li>Lunges: 3 sets of 10 reps each leg</li>
+              <li>Plank Hold: 3 sets of 25-30 seconds</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h4>Important Tips:</h4>
+        <ul>
+          <li>✓ Always warm up for 5-10 minutes before exercising</li>
+          <li>✓ Stay hydrated - drink plenty of water</li>
+          <li>✓ Listen to your body - if something hurts, stop</li>
+          <li>✓ Rest is crucial for recovery</li>
+          <li>✓ Be consistent - results come with time</li>
+        </ul>
+        
+        <p style="margin-top: 20px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">
+          <strong>Pro Tip:</strong> Track your progress in your account. After 4 weeks, reassess and consider moving to the Intermediate program!
+        </p>
+      `
+    },
+    intermediate: {
+      title: '⚡ Intermediate Workout Program',
+      content: `
+        <h3>Step Up Your Fitness Game</h3>
+        <p>You've built a solid foundation! This program focuses on increasing intensity and complexity. Train 4 days per week.</p>
+        
+        <h4>Daily Split (Recommended)</h4>
+        <p><strong>Monday - Chest & Triceps</strong></p>
+        <ul>
+          <li>Push-ups: 4 sets of 12-15 reps</li>
+          <li>Dumbbell Bench Press: 3 sets of 12 reps</li>
+          <li>Tricep Dips: 3 sets of 10 reps</li>
+          <li>Diamond Push-ups: 3 sets of 8-10 reps</li>
+        </ul>
+        
+        <p><strong>Tuesday - Cardio & Core</strong></p>
+        <ul>
+          <li>Running or Cycling: 30-40 minutes at moderate intensity</li>
+          <li>Plank Variations: 4 sets of 30-45 seconds</li>
+          <li>Russian Twists: 3 sets of 20 reps</li>
+          <li>Leg Raises: 3 sets of 12 reps</li>
+        </ul>
+        
+        <p><strong>Wednesday - Back & Biceps</strong></p>
+        <ul>
+          <li>Pull-ups or Assisted Pull-ups: 4 sets of 8-12 reps</li>
+          <li>Bent-over Rows: 3 sets of 12 reps</li>
+          <li>Dumbbell Curls: 3 sets of 12 reps</li>
+          <li>Reverse Fly: 3 sets of 12 reps</li>
+        </ul>
+        
+        <p><strong>Thursday - Legs & Core</strong></p>
+        <ul>
+          <li>Squats: 4 sets of 15 reps</li>
+          <li>Lunges: 3 sets of 12 reps each leg</li>
+          <li>Leg Press: 3 sets of 12 reps</li>
+          <li>Calf Raises: 3 sets of 15 reps</li>
+        </ul>
+        
+        <h4>Advanced Tips:</h4>
+        <ul>
+          <li>✓ Increase weight gradually (5-10% increments)</li>
+          <li>✓ Maintain 60-90 seconds rest between sets</li>
+          <li>✓ Track your lifts for progressive overload</li>
+          <li>✓ Consider adding supplements (consult healthcare provider)</li>
+        </ul>
+      `
+    },
+    advanced: {
+      title: '🔥 Advanced Workout Program',
+      content: `
+        <h3>Elite Fitness Training</h3>
+        <p>You're ready for serious gains! This program includes periodization and advanced techniques. Train 5-6 days per week.</p>
+        
+        <h4>Upper/Lower Split (5 Days)</h4>
+        <p><strong>Monday - Upper Power</strong></p>
+        <ul>
+          <li>Weighted Pull-ups: 5 sets of 5-8 reps</li>
+          <li>Barbell Bench Press: 5 sets of 5 reps</li>
+          <li>Barbell Rows: 5 sets of 5 reps</li>
+          <li>Overhead Press: 3 sets of 6-8 reps</li>
+        </ul>
+        
+        <p><strong>Tuesday - Lower Power</strong></p>
+        <ul>
+          <li>Barbell Squats: 5 sets of 5 reps</li>
+          <li>Deadlifts: 3 sets of 3-5 reps</li>
+          <li>Bulgarian Split Squats: 3 sets of 8 reps each</li>
+          <li>Leg Curls: 3 sets of 8-10 reps</li>
+        </ul>
+        
+        <p><strong>Wednesday - Active Recovery / Light Cardio</strong></p>
+        <ul>
+          <li>Swimming or Light Running: 30-45 minutes</li>
+          <li>Yoga or Stretching: 20-30 minutes</li>
+          <li>Foam Rolling: 10-15 minutes</li>
+        </ul>
+        
+        <p><strong>Thursday - Upper Hypertrophy</strong></p>
+        <ul>
+          <li>Incline Dumbbell Press: 4 sets of 8-10 reps</li>
+          <li>Lat Pulldowns: 4 sets of 10-12 reps</li>
+          <li>Dumbbell Flyes: 3 sets of 10-12 reps</li>
+          <li>Cable Rows: 3 sets of 12 reps</li>
+        </ul>
+        
+        <p><strong>Friday - Lower Hypertrophy</strong></p>
+        <ul>
+          <li>Leg Press: 4 sets of 10-12 reps</li>
+          <li>Hack Squats: 3 sets of 10-12 reps</li>
+          <li>Walking Lunges: 3 sets of 12 reps</li>
+          <li>Leg Extensions: 3 sets of 12-15 reps</li>
+        </ul>
+        
+        <h4>Elite Training Principles:</h4>
+        <ul>
+          <li>✓ Periodization: Vary intensity every 4-6 weeks</li>
+          <li>✓ Autoregulation: Adjust based on performance</li>
+          <li>✓ Sleep: Aim for 7-9 hours per night</li>
+          <li>✓ Deload Week: Every 4-6 weeks reduce intensity to 50%</li>
+          <li>✓ Nutrition: Critical for recovery and gains</li>
+          <li>✓ Consider working with a certified trainer for form checks</li>
+        </ul>
+      `
+    }
+  };
+
+  function openWorkoutDetail(level) {
+    const modal = document.getElementById('workoutModal');
+    const titleEl = document.getElementById('workoutTitle');
+    const contentEl = document.getElementById('workoutContent');
+    
+    const detail = workoutDetails[level];
+    titleEl.textContent = detail.title;
+    contentEl.innerHTML = detail.content;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWorkoutModal() {
+    document.getElementById('workoutModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  function openNutritionDetail() {
+    const modal = document.getElementById('nutritionModal');
+    const contentEl = document.getElementById('nutritionContent');
+    
+    contentEl.innerHTML = \`
+      <h3>🥗 Personalized Meal Plans</h3>
+      
+      <h4>Low-Calorie Plan (1500-1800 cal/day)</h4>
+      <p><strong>Goal:</strong> Weight loss</p>
+      <ul>
+        <li><strong>Breakfast:</strong> Oatmeal with berries, almonds, and honey (350 cal)</li>
+        <li><strong>Morning Snack:</strong> Greek yogurt with granola (150 cal)</li>
+        <li><strong>Lunch:</strong> Grilled chicken breast with quinoa and roasted vegetables (450 cal)</li>
+        <li><strong>Afternoon Snack:</strong> Apple with almond butter (150 cal)</li>
+        <li><strong>Dinner:</strong> Baked salmon with sweet potato and broccoli (500 cal)</li>
+      </ul>
+      
+      <h4>Balanced Plan (2000-2200 cal/day)</h4>
+      <p><strong>Goal:</strong> Maintenance and overall health</p>
+      <ul>
+        <li><strong>Breakfast:</strong> Eggs, whole wheat toast, orange juice (400 cal)</li>
+        <li><strong>Morning Snack:</strong> Banana with peanut butter (250 cal)</li>
+        <li><strong>Lunch:</strong> Turkey sandwich, vegetables, nuts (500 cal)</li>
+        <li><strong>Afternoon Snack:</strong> Protein shake with berries (300 cal)</li>
+        <li><strong>Dinner:</strong> Lean beef, rice, and vegetables (750 cal)</li>
+      </ul>
+      
+      <h4>High-Protein Plan (2500-3000 cal/day)</h4>
+      <p><strong>Goal:</strong> Muscle building and strength gain</p>
+      <ul>
+        <li><strong>Breakfast:</strong> 3 eggs, oatmeal, banana (500 cal)</li>
+        <li><strong>Mid-Morning Snack:</strong> Protein shake (300 cal)</li>
+        <li><strong>Lunch:</strong> Grilled chicken, sweet potato, rice (700 cal)</li>
+        <li><strong>Pre-Workout Snack:</strong> Rice cakes with honey (250 cal)</li>
+        <li><strong>Post-Workout Snack:</strong> Protein shake with dextrose (300 cal)</li>
+        <li><strong>Dinner:</strong> Salmon, pasta, vegetables (650 cal)</li>
+      </ul>
+      
+      <h4>🥤 Macronutrient Guidelines</h4>
+      <table style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+        <tr style="background-color: #e8f5e9;">
+          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Goal</td>
+          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Protein</td>
+          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Carbs</td>
+          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Fats</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px; border: 1px solid #ddd;">Weight Loss</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
+        </tr>
+        <tr style="background-color: #f5f5f5;">
+          <td style="padding: 12px; border: 1px solid #ddd;">Maintenance</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">25-30%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">50-55%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px; border: 1px solid #ddd;">Muscle Gain</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
+        </tr>
+      </table>
+      
+      <h4>💡 Nutrition Tips for Success</h4>
+      <ul>
+        <li>✓ <strong>Meal Prep:</strong> Prepare meals on Sunday for the week ahead</li>
+        <li>✓ <strong>Hydration:</strong> Drink at least 2-3 liters of water daily</li>
+        <li>✓ <strong>Fiber:</strong> Aim for 25-30g of fiber daily from whole grains and vegetables</li>
+        <li>✓ <strong>Whole Foods:</strong> Choose unprocessed foods whenever possible</li>
+        <li>✓ <strong>Timing:</strong> Eat within 30-60 minutes after workouts</li>
+        <li>✓ <strong>Supplements:</strong> Consider multivitamins, protein powder, and omega-3s</li>
+        <li>✓ <strong>Mindful Eating:</strong> Eat slowly and stop when satisfied (not full)</li>
+        <li>✓ <strong>Track Intake:</strong> Use an app to monitor calories and macros</li>
+      </ul>
+      
+      <p style="margin-top: 20px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">
+        <strong>Remember:</strong> Consistency is key! The best diet is the one you can stick to. Consider consulting a registered dietitian for personalized nutrition advice.
+      </p>
+    \`;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNutritionModal() {
+    document.getElementById('nutritionModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modals when clicking outside of them
+  window.addEventListener('click', function(e) {
+    const workoutModal = document.getElementById('workoutModal');
+    const nutritionModal = document.getElementById('nutritionModal');
+    
+    if (e.target === workoutModal) {
+      closeWorkoutModal();
+    }
+    if (e.target === nutritionModal) {
+      closeNutritionModal();
+    }
+  });
+</script>
+
+</body>
+</html>
