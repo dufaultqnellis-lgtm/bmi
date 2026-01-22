@@ -965,84 +965,76 @@
     const modal = document.getElementById('nutritionModal');
     const contentEl = document.getElementById('nutritionContent');
     
-    contentEl.innerHTML = \`
-      <h3>🥗 Personalized Meal Plans</h3>
-      
-      <h4>Low-Calorie Plan (1500-1800 cal/day)</h4>
-      <p><strong>Goal:</strong> Weight loss</p>
-      <ul>
-        <li><strong>Breakfast:</strong> Oatmeal with berries, almonds, and honey (350 cal)</li>
-        <li><strong>Morning Snack:</strong> Greek yogurt with granola (150 cal)</li>
-        <li><strong>Lunch:</strong> Grilled chicken breast with quinoa and roasted vegetables (450 cal)</li>
-        <li><strong>Afternoon Snack:</strong> Apple with almond butter (150 cal)</li>
-        <li><strong>Dinner:</strong> Baked salmon with sweet potato and broccoli (500 cal)</li>
-      </ul>
-      
-      <h4>Balanced Plan (2000-2200 cal/day)</h4>
-      <p><strong>Goal:</strong> Maintenance and overall health</p>
-      <ul>
-        <li><strong>Breakfast:</strong> Eggs, whole wheat toast, orange juice (400 cal)</li>
-        <li><strong>Morning Snack:</strong> Banana with peanut butter (250 cal)</li>
-        <li><strong>Lunch:</strong> Turkey sandwich, vegetables, nuts (500 cal)</li>
-        <li><strong>Afternoon Snack:</strong> Protein shake with berries (300 cal)</li>
-        <li><strong>Dinner:</strong> Lean beef, rice, and vegetables (750 cal)</li>
-      </ul>
-      
-      <h4>High-Protein Plan (2500-3000 cal/day)</h4>
-      <p><strong>Goal:</strong> Muscle building and strength gain</p>
-      <ul>
-        <li><strong>Breakfast:</strong> 3 eggs, oatmeal, banana (500 cal)</li>
-        <li><strong>Mid-Morning Snack:</strong> Protein shake (300 cal)</li>
-        <li><strong>Lunch:</strong> Grilled chicken, sweet potato, rice (700 cal)</li>
-        <li><strong>Pre-Workout Snack:</strong> Rice cakes with honey (250 cal)</li>
-        <li><strong>Post-Workout Snack:</strong> Protein shake with dextrose (300 cal)</li>
-        <li><strong>Dinner:</strong> Salmon, pasta, vegetables (650 cal)</li>
-      </ul>
-      
-      <h4>🥤 Macronutrient Guidelines</h4>
-      <table style="width: 100%; margin-top: 15px; border-collapse: collapse;">
-        <tr style="background-color: #e8f5e9;">
-          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Goal</td>
-          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Protein</td>
-          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Carbs</td>
-          <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Fats</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #ddd;">Weight Loss</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
-        </tr>
-        <tr style="background-color: #f5f5f5;">
-          <td style="padding: 12px; border: 1px solid #ddd;">Maintenance</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">25-30%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">50-55%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #ddd;">Muscle Gain</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>
-          <td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>
-        </tr>
-      </table>
-      
-      <h4>💡 Nutrition Tips for Success</h4>
-      <ul>
-        <li>✓ <strong>Meal Prep:</strong> Prepare meals on Sunday for the week ahead</li>
-        <li>✓ <strong>Hydration:</strong> Drink at least 2-3 liters of water daily</li>
-        <li>✓ <strong>Fiber:</strong> Aim for 25-30g of fiber daily from whole grains and vegetables</li>
-        <li>✓ <strong>Whole Foods:</strong> Choose unprocessed foods whenever possible</li>
-        <li>✓ <strong>Timing:</strong> Eat within 30-60 minutes after workouts</li>
-        <li>✓ <strong>Supplements:</strong> Consider multivitamins, protein powder, and omega-3s</li>
-        <li>✓ <strong>Mindful Eating:</strong> Eat slowly and stop when satisfied (not full)</li>
-        <li>✓ <strong>Track Intake:</strong> Use an app to monitor calories and macros</li>
-      </ul>
-      
-      <p style="margin-top: 20px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">
-        <strong>Remember:</strong> Consistency is key! The best diet is the one you can stick to. Consider consulting a registered dietitian for personalized nutrition advice.
-      </p>
-    \`;
+    contentEl.innerHTML = '<h3>🥗 Personalized Meal Plans</h3>' +
+      '<h4>Low-Calorie Plan (1500-1800 cal/day)</h4>' +
+      '<p><strong>Goal:</strong> Weight loss</p>' +
+      '<ul>' +
+      '<li><strong>Breakfast:</strong> Oatmeal with berries, almonds, and honey (350 cal)</li>' +
+      '<li><strong>Morning Snack:</strong> Greek yogurt with granola (150 cal)</li>' +
+      '<li><strong>Lunch:</strong> Grilled chicken breast with quinoa and roasted vegetables (450 cal)</li>' +
+      '<li><strong>Afternoon Snack:</strong> Apple with almond butter (150 cal)</li>' +
+      '<li><strong>Dinner:</strong> Baked salmon with sweet potato and broccoli (500 cal)</li>' +
+      '</ul>' +
+      '<h4>Balanced Plan (2000-2200 cal/day)</h4>' +
+      '<p><strong>Goal:</strong> Maintenance and overall health</p>' +
+      '<ul>' +
+      '<li><strong>Breakfast:</strong> Eggs, whole wheat toast, orange juice (400 cal)</li>' +
+      '<li><strong>Morning Snack:</strong> Banana with peanut butter (250 cal)</li>' +
+      '<li><strong>Lunch:</strong> Turkey sandwich, vegetables, nuts (500 cal)</li>' +
+      '<li><strong>Afternoon Snack:</strong> Protein shake with berries (300 cal)</li>' +
+      '<li><strong>Dinner:</strong> Lean beef, rice, and vegetables (750 cal)</li>' +
+      '</ul>' +
+      '<h4>High-Protein Plan (2500-3000 cal/day)</h4>' +
+      '<p><strong>Goal:</strong> Muscle building and strength gain</p>' +
+      '<ul>' +
+      '<li><strong>Breakfast:</strong> 3 eggs, oatmeal, banana (500 cal)</li>' +
+      '<li><strong>Mid-Morning Snack:</strong> Protein shake (300 cal)</li>' +
+      '<li><strong>Lunch:</strong> Grilled chicken, sweet potato, rice (700 cal)</li>' +
+      '<li><strong>Pre-Workout Snack:</strong> Rice cakes with honey (250 cal)</li>' +
+      '<li><strong>Post-Workout Snack:</strong> Protein shake with dextrose (300 cal)</li>' +
+      '<li><strong>Dinner:</strong> Salmon, pasta, vegetables (650 cal)</li>' +
+      '</ul>' +
+      '<h4>🥤 Macronutrient Guidelines</h4>' +
+      '<table style="width: 100%; margin-top: 15px; border-collapse: collapse;">' +
+      '<tr style="background-color: #e8f5e9;">' +
+      '<td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Goal</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Protein</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Carbs</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">Fats</td>' +
+      '</tr>' +
+      '<tr>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">Weight Loss</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>' +
+      '</tr>' +
+      '<tr style="background-color: #f5f5f5;">' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">Maintenance</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">25-30%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">50-55%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>' +
+      '</tr>' +
+      '<tr>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">Muscle Gain</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">30-35%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">45-50%</td>' +
+      '<td style="padding: 12px; border: 1px solid #ddd;">20-25%</td>' +
+      '</tr>' +
+      '</table>' +
+      '<h4>💡 Nutrition Tips for Success</h4>' +
+      '<ul>' +
+      '<li>✓ <strong>Meal Prep:</strong> Prepare meals on Sunday for the week ahead</li>' +
+      '<li>✓ <strong>Hydration:</strong> Drink at least 2-3 liters of water daily</li>' +
+      '<li>✓ <strong>Fiber:</strong> Aim for 25-30g of fiber daily from whole grains and vegetables</li>' +
+      '<li>✓ <strong>Whole Foods:</strong> Choose unprocessed foods whenever possible</li>' +
+      '<li>✓ <strong>Timing:</strong> Eat within 30-60 minutes after workouts</li>' +
+      '<li>✓ <strong>Supplements:</strong> Consider multivitamins, protein powder, and omega-3s</li>' +
+      '<li>✓ <strong>Mindful Eating:</strong> Eat slowly and stop when satisfied (not full)</li>' +
+      '<li>✓ <strong>Track Intake:</strong> Use an app to monitor calories and macros</li>' +
+      '</ul>' +
+      '<p style="margin-top: 20px; padding: 15px; background-color: #e8f5e9; border-radius: 5px;">' +
+      '<strong>Remember:</strong> Consistency is key! The best diet is the one you can stick to. Consider consulting a registered dietitian for personalized nutrition advice.' +
+      '</p>';
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
